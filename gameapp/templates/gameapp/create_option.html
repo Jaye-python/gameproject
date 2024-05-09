@@ -1,0 +1,37 @@
+{% extends 'gameapp/base.html' %}
+{% block title %} Create Option {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+                <div class="col-md-5 m-2">                    
+                    <div class="card m-1 border border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title display-6"> Create Options</h5>
+                            <hr>
+                            <form method="post">{% csrf_token %}
+                                {% for field in form %}
+
+                                <span class="text-primary">{{ field.label }}</span>
+                          <span class="form-control shadow-sm mt-2">{{ field }}</span>
+                          <span><p id="val{{forloop.counter}}"></p></span>
+                          {% endfor %}
+
+                                <input class="btn btn-primary shadow-sm mt-2" type="submit" value="Save">
+                            </form>
+
+
+                        </div> <!-- card body -->
+                    </div> <!-- card -->
+                 </div> <!-- col-md-5 -->
+
+
+
+
+    </div> <!-- row -->
+
+
+</div>  <!-- container -->
+
+{% endblock %}

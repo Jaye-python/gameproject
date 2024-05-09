@@ -1,0 +1,31 @@
+{% extends 'gameapp/base.html' %}
+{% block title %} Questions Page {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+                <div class="col-md-5 m-2">                    
+                    <div class="card m-1 border border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"> Option {{ option.id }}</h5>
+                            <p>
+                                <strong>Question:</strong> {{ option.question }}
+                               </p>
+                            <p>
+                             <strong>Options Text:</strong> {{ option.options_text }}
+                            </p>
+                            <p>
+                          <strong>Options: </strong> {{ option.option }}
+                            </p>
+                        </div> <!-- card body -->
+                    </div> <!-- card -->
+                 </div> <!-- col-md-5 -->
+
+    </div> <!-- row -->
+
+
+</div>  <!-- container -->
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'gameapp/base.html' %}
+{% block title %} Update Option {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+                <div class="col-md-5 m-2">                    
+                    <div class="card m-1 border border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"> Update Option</h5>
+                            <form method="post">{% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" value="Save">
+                            </form>
+
+
+                        </div> <!-- card body -->
+                    </div> <!-- card -->
+                 </div> <!-- col-md-5 -->
+
+
+
+               
+
+
+
+    </div> <!-- row -->
+
+
+</div>  <!-- container -->
+
+{% endblock %}

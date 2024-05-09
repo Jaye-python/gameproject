@@ -1,0 +1,116 @@
+{% extends 'gameapp/base.html' %}
+{% block title %} Questions Page {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        {% for option in options %}
+                <div class="col-md-5 m-2">                    
+                    <div class="card m-1 border border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title display-6"> Option {{ option.id }}</h5>
+                            <p>
+                                <a href="{% url 'update-option' pk=option.id %}" class="btn btn-sm shadow-sm btn-secondary text-white my-2"> <small>Update Option</small> </a> 
+                            </p>
+                            <hr>
+
+                            <p>
+                                {{ option.question.question }}
+                            </p>
+
+                            <p>
+                                <strong>Options Text:</strong> {{ option.options_text }}
+                               </p>
+                               <p>
+                             <strong>Options Text: </strong> Options: {{ option.options }}
+                               </p>
+                        </div> <!-- card body -->
+                    </div> <!-- card -->
+                 </div> <!-- col-md-5 -->
+                 {% empty %}
+                 <div class="col-md-5 m-2">                    
+                    <div class="card m-1 border border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"> Options</h5>
+                            <p>
+                                No options yet
+                            </p>
+
+                        </div> <!-- card body -->
+                    </div> <!-- card -->
+                 </div> <!-- col-md-5 -->
+                 {% endfor %}
+
+
+               
+
+
+
+
+    </div> <!-- row -->
+
+    <div class="row justify-content-center"> 
+
+        {% if page_obj.has_other_pages %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">
+                        First
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page_number in page_obj.paginator.page_range %}
+                {% comment %}
+                    This conditional allows us to display up to 3 pages before and after the current page
+                    If you decide to remove this conditional, all the pages will be displayed
+
+                    You can change the 3 to any number you want e.g
+                    To display only 5 pagination items, change the 3 to 2 (2 before and 2 after the current page)
+                {% endcomment %}
+                {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
+                    {% if page_obj.number == page_number %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                        Last
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %} <!-- pagination -->
+
+    </div>
+
+</div>  <!-- container -->
+
+{% endblock %}

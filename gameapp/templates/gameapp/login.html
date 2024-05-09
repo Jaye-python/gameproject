@@ -1,0 +1,88 @@
+{% extends 'gameapp/base.html' %}
+{% block title %} Game Login Page {% endblock %}
+
+
+{% block content %}
+<div class="container text-center">
+    <div class="row justify-content-center">
+<div class="col-md-5 m-2">
+<div class="card border border-primary m-1 p-1 shadow-sm">
+<div class="card-body">
+<h1 class="display-6 text-danger">Login</h1>
+
+
+<hr>
+
+{% if messages %}
+    {% for field in messages %}
+     
+   <p> <i class="bi bi-envelope-fill" style="font-size: 4rem; color: rgb(96, 170, 12);"></i></p>
+      
+     <p> <strong>{{ field }}</strong> </p>
+     
+    {% endfor %}
+    {% endif %}
+
+
+{% if form.errors %}
+<strong><p>Your username and password didn't match. Please try again.</p></strong> 
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+   <strong> <p>Please login to see this page.</p></strong>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+{% for field in form %}
+{% if field.name == 'password' %}
+<span class="text-primary">{{ field.label }}</span>
+      <span class="form-control shadow-sm mt-2">{{ field }} <i class="bi bi-eye-slash-fill" id="togglePasswordLogin"></i></span>
+
+      <span><p id="val{{forloop.counter}}"></p></span>
+      {% else %}
+      <span class="text-primary">{{ field.label }}</span>
+      <span class="form-control shadow-sm mt-2">{{ field }}</span>
+      <span><p id="val{{forloop.counter}}"></p></span>
+      <!-- <br>
+      <small class="text-muted">{{ field.help_text }}</small> <br> -->
+
+    {% endif %}  
+
+
+{% endfor %}
+
+<input class="btn btn-primary shadow-sm mt-2" type="submit" value="Login">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+<script>
+$(document).ready(
+    showPasswordLogin(),
+
+
+);
+
+</script>
+{% endblock %}
