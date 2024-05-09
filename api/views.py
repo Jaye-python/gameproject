@@ -9,6 +9,28 @@ from gameapp.models import QuestionsModel, OptionsModel, CustomUser
 import random
     
 class QuestionsListAPIView(APIView):
+    """
+    API view for retrieving and recording user responses to questions in a quiz.
+
+    Endpoint:
+    http://127.0.0.1:8000/api/questions/
+    
+    POST Request:
+    ID OF QUESTION
+    ID OF OPTION SELECTED BY USER
+    {
+        "selected_question": 1, 
+        "selected_option": 1
+    }    
+            
+    Methods:
+        get_random_question(user_model): Selects a random question that the user has not yet attempted.
+        
+        get(request, format=None): Handles GET requests to retrieve a random question for the user.
+        
+        post(request, format=None): Handles POST requests to record user responses to questions.
+
+    """
     permission_classes = [IsAuthenticated]
     
     def get_random_question(self, user_model):
@@ -55,13 +77,42 @@ class QuestionsListAPIView(APIView):
         return Response({'message': 'Response recorded successfully'}, status=status.HTTP_200_OK)
 
 class UserScoresAPIView(APIView):
+    """
+    API view for retrieving user scores in descending order.
+    
+    ENDPOINT:
+    http://127.0.0.1:8000/api/user-scores/
+
+    Methods:
+    get(request, format=None): Handles GET requests to retrieve user scores.
+
+    """
+    
     def get(self, request, format=None):
         scores = CustomUser.objects.all().order_by('-score')
         serializer = CustomUserSerializer(scores, many=True)
         return Response(serializer.data)
     
     
-class CreateQuestionAPIView(APIView):    
+class CreateQuestionAPIView(APIView):
+    """
+    API view for creating and retrieving questions.
+    
+    ENDPOINT:
+    http://127.0.0.1:8000/api/create-question/
+    
+    POST Request:
+    {
+    "question_text": "Who are you?" ,
+    "answer_option": "b",
+    "answer_text": "boya"
+    }
+
+    Methods:
+    get(request, format=None): Retrieves a list of all questions.
+    
+    post(request, format=None): Creates a new question.
+    """
     def get(self, request, format=None):
         questions = QuestionsModel.objects.all()
         serializer = AdminQuestionsModelSerializer(questions, many=True)
@@ -76,6 +127,27 @@ class CreateQuestionAPIView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 class OptionCreateAPIView(APIView):
+    """
+    API view for creating and retrieving options.
+    
+    ENDPOINT:
+    http://127.0.0.1:8000/api/create-option/
+
+    POST Request:
+    ID OF QUESTION
+    
+    {
+    "question": 1,
+    "option": "c",
+    "options_text": "I don't know"
+    }
+
+    Methods:
+    get(request, format=None): Retrieves a list of all options.
+
+    post(request, format=None): Creates a new option.
+    """
+    
     def get(self, request, format=None):
         options = OptionsModel.objects.all()
         serializer = AdminOptionsModelSerializer(options, many=True)
