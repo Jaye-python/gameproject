@@ -48,9 +48,10 @@ git clone https://github.com/Jaye-python/gameproject.git
 ```
 cd gameproject
 ```
-8. Install dependencies
+8. Install dependencies; set up your DB and provide DB details in your ENVIRONMENT file (check settings.py file for required DB details to provide); then MIGRATE
 ```
 pip install -r requirements.txt
+python manage.py migrate
 ```
 9. Create `superuser` account
 ```
