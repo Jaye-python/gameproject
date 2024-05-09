@@ -15,7 +15,7 @@ Commands below uses `Linux OS`.
 8. The user-submitted answer is checked against the answer stored on the QuestionModel by getting the Option ID and checking its option with the option stored as answer on the QuestionModel (using the question ID)
 9. All user scores are also available on the user model; as each correct question answered by the user increments the user's score
 10. You can manage the app from the Django admin interface and click on `View On Site` buttons on the admin page
-11. The app front-end is built using `Boostrap`
+11. The app front-end is built using `Bootstrap`
 
 
 ### To launch this app on your system:
