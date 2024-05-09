@@ -11,8 +11,8 @@ Commands below uses `Linux OS`.
 4. Questions are created on the QuestionsModel
 5. While options are created on the OptionsModel with a Foreign key relationship to each created question
 6. The correct answer option (a, b or c) is stored on the QuestionModel and the OptionModel
-7. The user-submitted answer is checked against the answer stored on the QuestionModel by getting the Option ID and checking its option with the option stored as answer on the QuestionModel
-8. To answer question, user sends the question ID and Option ID
+7. To answer question, user sends the question ID and Option ID
+8. The user-submitted answer is checked against the answer stored on the QuestionModel by getting the Option ID and checking its option with the option stored as answer on the QuestionModel (using the question ID)
 9. All user scores are also available on the user model; as each correct question answered by the user increments the user's score
 10. You can manage the app from the Django admin interface and click on `View On Site` buttons on the admin page
 
