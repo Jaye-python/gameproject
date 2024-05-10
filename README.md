@@ -16,6 +16,7 @@ Commands below uses `Linux OS`.
 9. All user scores are also available on the user model; as each correct question answered by the user increments the user's score
 10. You can manage the app from the Django admin interface and click on `View On Site` buttons on the admin page
 11. The app front-end is built using `Bootstrap`
+12. The front-end can be accessed by going to the home page which has links to all other pages `http://127.0.0.1:8000`
 
 
 ### To launch this app on your system:
