@@ -1,7 +1,7 @@
 # Game Application
 This is an API-based Django app built using Django Rest Framework. You can create questions, options, answer questions and get scores.
 
-Commands below uses `Linux OS`.
+Commands below use `Linux OS`.
 
 ### Implementations:
 
